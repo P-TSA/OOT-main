@@ -29,7 +29,8 @@ export function UserTable({ users }: UserTableProps) {
             <th className="text-left p-4 text-gray-400 text-sm">이메일</th>
             <th className="text-left p-4 text-gray-400 text-sm">비밀번호</th>
             <th className="text-left p-4 text-gray-400 text-sm">성별</th>
-            <th className="text-left p-4 text-gray-400 text-sm">가입일</th>
+            <th className="text-left p-4 text-gray-400 text-sm">나이</th>
+            <th className="text-left p-4 text-gray-400 text-sm">마지막 접속</th>{/* 수정: 가입일에서 마지막 접속으로 변경 */}
             <th className="text-left p-4 text-gray-400 text-sm">상태</th>
             <th className="w-12"></th>
           </tr>
@@ -65,7 +66,8 @@ export function UserTable({ users }: UserTableProps) {
                   {user.gender}
                 </span>
               </td>
-              <td className="p-4 text-gray-400 text-sm">{user.joinDate}</td>
+              <td className="p-4 text-gray-400 text-sm">{user.age}세</td>
+              <td className="p-4 text-gray-400 text-sm">{user.lastAccess}</td>{/* 수정: joinDate에서 lastAccess로 변경 */}
               <td className="p-4">
                 <span
                   className={`px-3 py-1 rounded text-sm ${

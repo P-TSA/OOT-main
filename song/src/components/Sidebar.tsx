@@ -1,6 +1,6 @@
-import { Shield, ChevronDown, LogOut } from 'lucide-react';
+import { Shield, Users, Cloud, Bot, Database } from 'lucide-react'; // LogOut 제거
 
-export function Sidebar() {
+export function Sidebar({ currentPage, setCurrentPage }) { // 추가: props 받기
   return (
     <aside className="w-64 bg-[#1a1f2e] border-r border-gray-800 flex flex-col">
       {/* Header */}
@@ -18,13 +18,6 @@ export function Sidebar() {
 
       {/* Menu Items */}
       <nav className="flex-1 p-4">
-        <div className="mb-4">
-          <button className="w-full flex items-center justify-between p-3 text-gray-400 hover:bg-gray-800 rounded-lg transition-colors">
-            <span className="text-sm">시스템 선택</span>
-            <ChevronDown className="w-4 h-4" />
-          </button>
-        </div>
-
         <div className="mb-4 px-3">
           <div className="flex items-center gap-2 mb-1">
             <div className="w-2 h-2 bg-green-500 rounded-full"></div>
@@ -33,19 +26,73 @@ export function Sidebar() {
           <p className="text-xs text-gray-500">모든 시스템이 정상 작동 중</p>
         </div>
 
-        <button className="w-full bg-gradient-to-r from-red-500 to-red-600 text-white p-4 rounded-lg hover:from-red-600 hover:to-red-700 transition-all">
-          <div>사용자 관리</div>
-          <div className="text-xs opacity-90 mt-1">전체 사용자 목록 및 활동 내역</div>
-        </button>
-      </nav>
+        {/* 메뉴 버튼들 */}
+        <div className="space-y-3">
+          {/* 날씨 모니터링 버튼 */}
+          <button
+            onClick={() => setCurrentPage('weather')}
+            className={`w-full p-4 rounded-lg transition-all flex items-start gap-3 ${
+              currentPage === 'weather'
+                ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white'
+                : 'bg-gray-800/50 text-gray-300 hover:bg-gray-800'
+            }`}
+          >
+            <Cloud className="w-5 h-5 mt-0.5" />
+            <div className="text-left">
+              <div>날씨 모니터링</div>
+              <div className="text-xs opacity-90 mt-1">주요 도시별 날씨 정보 및 통계</div>
+            </div>
+          </button>
 
-      {/* Logout Button */}
-      <div className="p-4 border-t border-gray-800">
-        <button className="w-full bg-red-600 text-white p-3 rounded-lg flex items-center justify-center gap-2 hover:bg-red-700 transition-colors">
-          <LogOut className="w-4 h-4" />
-          <span>로그아웃</span>
-        </button>
-      </div>
+          {/* 사용자 관리 버튼 */}
+          <button
+            onClick={() => setCurrentPage('users')}
+            className={`w-full p-4 rounded-lg transition-all flex items-start gap-3 ${
+              currentPage === 'users'
+                ? 'bg-gradient-to-r from-red-500 to-red-600 text-white'
+                : 'bg-gray-800/50 text-gray-300 hover:bg-gray-800'
+            }`}
+          >
+            <Users className="w-5 h-5 mt-0.5" />
+            <div className="text-left">
+              <div>사용자 관리</div>
+              <div className="text-xs opacity-90 mt-1">전체 사용자 목록 및 활동 내역</div>
+            </div>
+          </button>
+
+          {/* 데이터처리 버튼 */}
+          <button
+            onClick={() => setCurrentPage('data')}
+            className={`w-full p-4 rounded-lg transition-all flex items-start gap-3 ${
+              currentPage === 'data'
+                ? 'bg-gradient-to-r from-cyan-500 to-cyan-600 text-white'
+                : 'bg-gray-800/50 text-gray-300 hover:bg-gray-800'
+            }`}
+          >
+            <Database className="w-5 h-5 mt-0.5" />
+            <div className="text-left">
+              <div>데이터처리</div>
+              <div className="text-xs opacity-90 mt-1">데이터 분석 및 처리 현황</div>
+            </div>
+          </button>
+
+          {/* AI 점검 및 확인 버튼 */}
+          <button
+            onClick={() => setCurrentPage('ai')}
+            className={`w-full p-4 rounded-lg transition-all flex items-start gap-3 ${
+              currentPage === 'ai'
+                ? 'bg-gradient-to-r from-purple-500 to-purple-600 text-white'
+                : 'bg-gray-800/50 text-gray-300 hover:bg-gray-800'
+            }`}
+          >
+            <Bot className="w-5 h-5 mt-0.5" />
+            <div className="text-left">
+              <div>AI 점검 및 확인</div>
+              <div className="text-xs opacity-90 mt-1">AI 시스템 상태 및 성능 모니터링</div>
+            </div>
+          </button>
+        </div>
+      </nav>
     </aside>
   );
 }

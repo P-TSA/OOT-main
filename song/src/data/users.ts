@@ -4,7 +4,8 @@ export interface User {
   email: string;
   password: string;
   gender: '남성' | '여성' | '기타';
-  joinDate: string;
+  age: number;
+  lastAccess: string; // 수정: joinDate에서 lastAccess로 변경
   status: 'active' | 'pending';
 }
 
@@ -15,7 +16,8 @@ export const users: User[] = [
     email: 'kimminsu@example.com',
     password: 'pass1234!@',
     gender: '남성',
-    joinDate: '2025-12-03',
+    age: 28,
+    lastAccess: '2025-12-06 14:23', // 수정: 마지막 접속 시간
     status: 'active',
   },
   {
@@ -24,7 +26,8 @@ export const users: User[] = [
     email: 'leejieun@example.com',
     password: 'secure#567',
     gender: '여성',
-    joinDate: '2025-12-03',
+    age: 24,
+    lastAccess: '2025-12-06 09:15', // 수정
     status: 'active',
   },
   {
@@ -33,7 +36,8 @@ export const users: User[] = [
     email: 'parkseojun@example.com',
     password: 'myPass890',
     gender: '남성',
-    joinDate: '2025-12-02',
+    age: 35,
+    lastAccess: '2025-12-05 18:42', // 수정
     status: 'active',
   },
   {
@@ -42,7 +46,8 @@ export const users: User[] = [
     email: 'choiyujin@example.com',
     password: 'pwd!2024',
     gender: '여성',
-    joinDate: '2025-12-02',
+    age: 19,
+    lastAccess: '2025-12-03 22:10', // 수정
     status: 'pending',
   },
   {
@@ -51,7 +56,8 @@ export const users: User[] = [
     email: 'junghaneul@example.com',
     password: 'test@123',
     gender: '기타',
-    joinDate: '2025-12-02',
+    age: 31,
+    lastAccess: '2025-12-04 11:30', // 수정
     status: 'active',
   },
   {
@@ -60,7 +66,8 @@ export const users: User[] = [
     email: 'kangminji@example.com',
     password: 'hello!456',
     gender: '여성',
-    joinDate: '2025-12-01',
+    age: 22,
+    lastAccess: '2025-12-06 16:55', // 수정
     status: 'active',
   },
   {
@@ -69,7 +76,8 @@ export const users: User[] = [
     email: 'yuntaeyang@example.com',
     password: 'sun#789',
     gender: '남성',
-    joinDate: '2025-12-01',
+    age: 42,
+    lastAccess: '2025-12-02 08:20', // 수정
     status: 'pending',
   },
 ];
