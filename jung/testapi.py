@@ -1,5 +1,15 @@
 import requests
 from datetime import datetime
+import sys
+import io
+
+# stdout을 UTF-8로 명시적 설정
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+
+# Windows 환경에서 UTF-8 출력 설정
+if sys.platform == "win32":
+    import os
+    os.system("chcp 65001 > nul")
 
 # ============================
 # 0) weather_code → 한국어 설명 매핑
