@@ -4,7 +4,7 @@
 
 # connection = mysql.connector.connect(
 #     host="localhost",      # DB 서버 주소
-#     user="dbid253",  # DB 계정 ID
+#     user="dbid253",        # DB 계정 ID
 #     password="dbpass253",  # DB 계정 PW
 #     database="db25327"     # 사용할 DB 이름
 # )
