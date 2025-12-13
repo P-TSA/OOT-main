@@ -23,6 +23,12 @@ app.listen(65027, function () {
   console.log('웹서버 실행중...');
   console.log('회원조회: http://ceprj2.gachon.ac.kr:65027/members');
   console.log('회원가입: http://ceprj2.gachon.ac.kr:65027/signup');
+  console.log('회원가입 API: http://ceprj2.gachon.ac.kr:65027/api/auth/signup');
+  console.log('로그인 API: http://ceprj2.gachon.ac.kr:65027/api/auth/login');
+  console.log('옷정보 저장: http://ceprj2.gachon.ac.kr:65027/api/outfit/save');
+  console.log('옷정보 조회(전체): http://ceprj2.gachon.ac.kr:65027/api/outfit/all');
+  console.log('옷정보 조회(개인): http://ceprj2.gachon.ac.kr:65027/api/outfit/:userId');
+  console.log('AI 추천: http://ceprj2.gachon.ac.kr:65027/api/ai/recommendation');
 });
 
 // 라우트를 수행합니다.
@@ -153,8 +159,8 @@ app.post('/api/outfit/save', (request, response) => {
 
     // userdata 테이블에 옷 정보 INSERT 또는 UPDATE
     client.query(
-      'INSERT INTO userdata (ID, top, bottom, created_at) VALUES (?, ?, ?, NOW()) ON DUPLICATE KEY UPDATE top = ?, bottom = ?, created_at = NOW()',
-      [body.userId, body.top, body.bottom, body.top, body.bottom],
+      'INSERT INTO userdata (ID, top, bottom, temperature, weather_code, temperature_max, temperature_min, wind_speed, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, NOW()) ON DUPLICATE KEY UPDATE top = ?, bottom = ?, temperature = ?, weather_code = ?, temperature_max = ?, temperature_min = ?, wind_speed = ?, created_at = NOW()',
+      [body.userId, body.top, body.bottom, body.temperature, body.weather_code, body.temperature_max, body.temperature_min, body.wind_speed, body.top, body.bottom, body.temperature, body.weather_code, body.temperature_max, body.temperature_min, body.wind_speed],
       (error) => {
         if (error) {
           return response.status(500).json({
@@ -207,7 +213,7 @@ app.get('/api/ai/recommendation', (request, response) => {
 // 모든 사용자의 옷 정보 조회 API (특정 사용자 조회보다 먼저)
 app.get('/api/outfit/all', (request, response) => {
   client.query(
-    'SELECT ID, top, bottom, created_at FROM userdata ORDER BY created_at DESC',
+    'SELECT ID, top, bottom, temperature, weather_code, temperature_max, temperature_min, wind_speed, created_at FROM userdata ORDER BY created_at DESC',
     (error, results) => {
       if (error) {
         return response.status(500).json({
@@ -229,7 +235,7 @@ app.get('/api/outfit/:userId', (request, response) => {
   let userId = request.params.userId;
 
   client.query(
-    'SELECT id, top, bottom, created_at FROM userdata WHERE id = ?',
+    'SELECT ID, top, bottom, temperature, weather_code, temperature_max, temperature_min, wind_speed, created_at FROM userdata WHERE ID = ? ORDER BY created_at DESC',
     [userId],
     (error, results) => {
       if (results.length === 0) {
